@@ -7,6 +7,8 @@ class LoginViewController: UIViewController {
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
+    let bankeyLabel = UILabel()
+    let greetingBankey = UILabel()
     
     var username: String? {
         return loginView.usernameTextField.text
@@ -41,12 +43,27 @@ extension LoginViewController {
         errorMessageLabel.textColor = .systemRed
         errorMessageLabel.numberOfLines = 0
         errorMessageLabel.isHidden = true
+        
+        bankeyLabel.translatesAutoresizingMaskIntoConstraints = false
+        bankeyLabel.text = "Bankey"
+        bankeyLabel.font = .boldSystemFont(ofSize: 40)
+        bankeyLabel.textAlignment = .center
+        bankeyLabel.textColor = .black
+        
+        greetingBankey.translatesAutoresizingMaskIntoConstraints = false
+        greetingBankey.text = "Your premium source for all things banking!"
+        greetingBankey.font = .systemFont(ofSize: 22)
+        greetingBankey.textColor = .black
+        greetingBankey.textAlignment = .center
+        greetingBankey.numberOfLines = 2
     }
     
     private func layout(){
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
+        view.addSubview(bankeyLabel)
+        view.addSubview(greetingBankey)
         
         //LoginView
         NSLayoutConstraint.activate([
@@ -65,6 +82,18 @@ extension LoginViewController {
             errorMessageLabel.topAnchor.constraint(equalToSystemSpacingBelow: signInButton.bottomAnchor, multiplier: 2),
             errorMessageLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             loginView.trailingAnchor.constraint(equalTo: errorMessageLabel.trailingAnchor)
+        ])
+        //BankeyLable
+        NSLayoutConstraint.activate([
+            bankeyLabel.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 20),
+            bankeyLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: loginView.leadingAnchor, multiplier: 1),
+            loginView.trailingAnchor.constraint(equalToSystemSpacingAfter: bankeyLabel.trailingAnchor, multiplier: 1)
+        ])
+        //greetingBankey
+        NSLayoutConstraint.activate([
+            greetingBankey.topAnchor.constraint(equalToSystemSpacingBelow: bankeyLabel.bottomAnchor, multiplier: 6),
+            greetingBankey.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            loginView.trailingAnchor.constraint(equalTo: greetingBankey.trailingAnchor)
         ])
         
     }
